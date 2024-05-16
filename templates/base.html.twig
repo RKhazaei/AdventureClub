@@ -23,11 +23,19 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
+                        {% if is_granted("ROLE_ADMIN") %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
+                            <a class="nav-link" href="{{ path('app_logout') }}">uitloggen</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
+                        {% elseif is_granted("ROLE_MEMBER") %}
+                            <ul>
+                                <li class="nav-item ms-auto">
+                                    <a class="nav-link" href="{{ path('app_logout') }}">uitloggen</a>
+                                </li>
+                            </ul>
+                        {% endif %}
+                        <li class="nav-item ms-auto">
+                            <a class="nav-link" href="{{ path('app_login') }}">inloggen</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
