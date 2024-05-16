@@ -33,13 +33,13 @@ class SecurityController extends AbstractController
     public function redirectAction(Security $security)
     {
         if ($security->isGranted("ROLE_ADMIN")) {
-            $this->redirectToRoute("app_adventure");
+           return $this->redirectToRoute('app_admin');
         }
         if ($security->isGranted("ROLE_MEMBER")) {
-            $this->redirectToRoute("app_adventure");
+           return $this->redirectToRoute("app_member");
         }
         if ($security->isGranted("ROLE_DOCENT")) {
-            $this->redirectToRoute("app_adventure");
+           return $this->redirectToRoute("app_adventure");
         }
         return $this->redirectToRoute("app_adventure");
     }

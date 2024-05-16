@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MemberController!{% endblock %}
+
+{% block body %}
+
+<div>
+    <h1 class="text-center">welkom!</h1>
+</div>
+<div class="container mt-auto">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Titel</th>
+            <th scope="col">Beschrijving</th>
+            <th scope="col">Datum</th>
+            <th scope="col">author</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for story in stories %}
+        <tr>
+
+            <td>{{ story.title }}</td>
+            <td>{{ story.description }}</td>
+            <td>{{ story.date| date("D, d M Y") }}</td>
+            <td>{{ story.member.fname }}</td>
+        </tr>
+{% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-success" href="{{ path('app_add') }}">Toevoegen</a>
+    
+</div>
+
+
+{% endblock %}
