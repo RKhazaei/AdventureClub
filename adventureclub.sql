@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 16 mei 2024 om 12:57
+-- Gegenereerd op: 16 mei 2024 om 15:07
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -83,6 +83,14 @@ CREATE TABLE `story` (
   `member_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `story`
+--
+
+INSERT INTO `story` (`id`, `title`, `description`, `date`, `member_id`) VALUES
+(1, 'Anime', 'cool stuff', '2024-05-16', 4),
+(2, 'gewasda', 'asdsad', '2024-05-24', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -104,10 +112,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `fname`, `iban`, `master`) VALUES
-(1, 'emma@gmail.com', '[\"ROLEA_ADMIN\"]', '$2y$13$nsIX9YT3eM.lFbS5ne5/7OaIM7tXC/FgiNpu0jn5hKRiOTF6Z3JsO', 'Emma', NULL, NULL),
-(2, 'mark@gmail.com', '[\"MEMBER_ROLE\"]', '$2y$13$nsIX9YT3eM.lFbS5ne5/7OaIM7tXC/FgiNpu0jn5hKRiOTF6Z3JsO', 'Mark', NULL, 'symfony'),
-(3, 'lisa@gmail.com', '[\"MEMBER_ROLE\"]', '$2y$13$nsIX9YT3eM.lFbS5ne5/7OaIM7tXC/FgiNpu0jn5hKRiOTF6Z3JsO', 'Lisa', NULL, 'front-end'),
-(4, 'alex@gmail.com', '[\"MEMBER_ROLE\"]', '$2y$13$nsIX9YT3eM.lFbS5ne5/7OaIM7tXC/FgiNpu0jn5hKRiOTF6Z3JsO', 'Alex', NULL, 'crud');
+(1, 'emma@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$nsIX9YT3eM.lFbS5ne5/7OaIM7tXC/FgiNpu0jn5hKRiOTF6Z3JsO', 'Emma', NULL, NULL),
+(2, 'mark@gmail.com', '[\"ROLE_MEMBER\"]', '$2y$13$nsIX9YT3eM.lFbS5ne5/7OaIM7tXC/FgiNpu0jn5hKRiOTF6Z3JsO', 'Mark', NULL, 'symfony'),
+(3, 'lisa@gmail.com', '[\"ROLE_MEMBER\"]', '$2y$13$nsIX9YT3eM.lFbS5ne5/7OaIM7tXC/FgiNpu0jn5hKRiOTF6Z3JsO', 'Lisa', NULL, 'front-end'),
+(4, 'alex@gmail.com', '[\"ROLE_MEMBER\"]', '$2y$13$nsIX9YT3eM.lFbS5ne5/7OaIM7tXC/FgiNpu0jn5hKRiOTF6Z3JsO', 'Alex', NULL, 'crud');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -168,7 +176,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT voor een tabel `story`
 --
 ALTER TABLE `story`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `user`
