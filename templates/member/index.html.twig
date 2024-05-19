@@ -5,7 +5,7 @@
 {% block body %}
 
 <div>
-    <h1 class="text-center">welkom!</h1>
+    <h1 class="text-center">welkom {{ app.user.fname }}!</h1>
 </div>
 <div class="container mt-auto">
     <table class="table">
@@ -15,6 +15,7 @@
             <th scope="col">Beschrijving</th>
             <th scope="col">Datum</th>
             <th scope="col">author</th>
+            <th scope="col">update</th>
 
         </tr>
         </thead>
@@ -26,6 +27,7 @@
             <td>{{ story.description }}</td>
             <td>{{ story.date| date("D, d M Y") }}</td>
             <td>{{ story.member.fname }}</td>
+            <td><a class="btn btn-warning" href="{{ path('app_update',{id: story.id}) }}">update</a></td>
         </tr>
 {% endfor %}
         </tbody>

@@ -45,25 +45,26 @@ class MemberController extends AbstractController
             'form' => $form,
         ]);
     }
-    #[Route('/update', name: 'app_update')]
+    #[Route('/update{id}', name: 'app_update')]
     public function updatelesson(EntityManagerInterface $em,int $id, Request $request): Response
     {
 
-        $lesson = $em->getRepository(Story::class)->find($id);
-        $form = $this->createForm(StoryType::class, $lesson);
+        $story = $em->getRepository(Story::class)->find($id);
+
+        $form = $this->createForm(StoryType::class, $story);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // $form->getData() holds the submitted values
             // but, the original `$task` variable has also been updated
             $task = $form->getData();
-            $em->flush();
-            // ... perform some action, such as saving the task to the database
 
-            return $this->redirectToRoute('app_home_teacher');
+            // ... perform some action, such as saving the task to the database
+            $em->flush();
+            return $this->redirectToRoute('app_member');
         }
 
-        return $this->render('teacher/addlesson.html.twig', [
+        return $this->render('member/updatestory.html.twig', [
             'form' => $form,
         ]);
     }
