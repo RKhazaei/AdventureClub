@@ -48,9 +48,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Story::class, mappedBy: 'member')]
     private Collection $stories;
 
+    /**
+     * @var Collection<int, Lesson>
+     */
+    #[ORM\OneToMany(targetEntity: Lesson::class, mappedBy: 'member')]
+    private Collection $memberlessons;
+
+    /**
+     * @var Collection<int, Lesson>
+     */
+    #[ORM\OneToMany(targetEntity: Lesson::class, mappedBy: 'docent')]
+    private Collection $docentlessons;
+
     public function __construct()
     {
         $this->stories = new ArrayCollection();
+        $this->memberlessons = new ArrayCollection();
+        $this->docentlessons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -188,6 +202,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($story->getMember() === $this) {
                 $story->setMember(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Lesson>
+     */
+    public function getMemberlessons(): Collection
+    {
+        return $this->memberlessons;
+    }
+
+    public function addMemberlesson(Lesson $memberlesson): static
+    {
+        if (!$this->memberlessons->contains($memberlesson)) {
+            $this->memberlessons->add($memberlesson);
+            $memberlesson->setMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMemberlesson(Lesson $memberlesson): static
+    {
+        if ($this->memberlessons->removeElement($memberlesson)) {
+            // set the owning side to null (unless already changed)
+            if ($memberlesson->getMember() === $this) {
+                $memberlesson->setMember(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Lesson>
+     */
+    public function getDocentlessons(): Collection
+    {
+        return $this->docentlessons;
+    }
+
+    public function addDocentlesson(Lesson $docentlesson): static
+    {
+        if (!$this->docentlessons->contains($docentlesson)) {
+            $this->docentlessons->add($docentlesson);
+            $docentlesson->setDocent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocentlesson(Lesson $docentlesson): static
+    {
+        if ($this->docentlessons->removeElement($docentlesson)) {
+            // set the owning side to null (unless already changed)
+            if ($docentlesson->getDocent() === $this) {
+                $docentlesson->setDocent(null);
             }
         }
 

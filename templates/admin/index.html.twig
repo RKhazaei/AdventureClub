@@ -23,7 +23,7 @@
                     <td>{{ story.description }}</td>
                     <td>{{ story.date| date("Y/m/d") }}</td>
                     <td>{{ story.member.fname }}</td>
-                <td><a class="btn btn-danger" href="{{ path('app_delete', {id: story.id}) }}"></a></td>
+                <td><a class="btn btn-danger" href="{{ path('app_delete', {id: story.id}) }}">delete</a></td>
             </tr>
         {% endfor %}
 
