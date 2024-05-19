@@ -19,4 +19,16 @@ class AdminController extends AbstractController
             'stories' => $story,
         ]);
     }
+
+    #[Route('/admindelete{id}', name: 'app_delete')]
+    public function delete(EntityManagerInterface $entityManager,int $id): Response
+    {
+        $story = $entityManager->getRepository(Story::class)->find($id);
+        $entityManager->remove($story);
+        $entityManager->flush();
+
+        return $this->render('admin/index.html.twig', [
+            'stories' => $story,
+        ]);
+    }
 }
